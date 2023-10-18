@@ -1,0 +1,24 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Update View
+{% endblock %}
+
+
+{% block content %}
+    <h1>Welcome to My Tennis Club</h1>
+        
+    <form method="POST">
+        <!-- Security token by Django -->
+        {% csrf_token %}
+ 
+        <!-- form as paragraph -->
+        {{ form.as_p }}
+ 
+        <input type="submit" value="Update">
+    </form>
+ 
+
+    <!-- Add any additional content or styling here -->
+  
+{% endblock %}

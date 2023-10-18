@@ -1,0 +1,20 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Member Form
+{% endblock %}
+
+
+{% block content %}
+    <h1>Welcome to My Tennis Club</h1>
+        
+    <!-- Display Form -->
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Add any additional content or styling here -->
+  
+{% endblock %}
