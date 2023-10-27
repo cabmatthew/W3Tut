@@ -46,6 +46,7 @@ def create_view(request):
     context['form'] = form
     return render(request, "crud/create.html", context)
 
+
 def memberlist_view(request):
     context = {}
 
