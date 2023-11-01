@@ -3,23 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 from .models import Member
 from .forms import MembersForm
-
-
-def members(request):
-    mymembers = Member.objects.all().values()
-    template = loader.get_template('all_members.html')
-    context = {
-        'mymembers': mymembers,
-    }
-    return HttpResponse(template.render(context, request))
-
-def details(request, id):
-    mymember = Member.objects.get(id=id)
-    template = loader.get_template('details.html')
-    context = {
-        'mymember': mymember,
-    }
-    return HttpResponse(template.render(context, request))
+from django.contrib.auth.decorators import login_required
 
 def main(request):
     template = loader.get_template('main.html')
@@ -42,6 +26,7 @@ def create_view(request):
     if form.is_valid():
         # Save the form dta to model
         form.save()
+        return HttpResponseRedirect("/list")
 
     context['form'] = form
     return render(request, "crud/create.html", context)
@@ -54,6 +39,7 @@ def memberlist_view(request):
 
     return render(request, "crud/listview.html", context)
 
+@login_required
 def memberdetail_view(request, id):
     context = {}
     
@@ -98,12 +84,12 @@ def update_or_delete_view(request, id):
             form = MembersForm(request.POST, instance=obj)
             if form.is_valid():
                 form.save()
-                return HttpResponseRedirect(f"/{id}")
+                return HttpResponseRedirect(f"/list")
 
         # Check if the form was submitted for delete
         if 'delete' in request.POST:
             obj.delete()
-            return HttpResponseRedirect("/")
+            return HttpResponseRedirect("/list")
 
     else:
         form = MembersForm(instance=obj)
