@@ -16,6 +16,7 @@ def testing(request):
     }
     return HttpResponse(template.render(context, request))
 
+@login_required
 def create_view(request):
     context = {}
 
@@ -31,7 +32,7 @@ def create_view(request):
     context['form'] = form
     return render(request, "crud/create.html", context)
 
-
+@login_required
 def memberlist_view(request):
     context = {}
 
@@ -47,33 +48,7 @@ def memberdetail_view(request, id):
 
     return render(request, "crud/detailview.html", context)
 
-def update_view(request, id):
-    context = {}
-
-    obj = get_object_or_404(Member, id = id)
-
-    form = MembersForm(request.POST or None, instance = obj)
-
-    if form.is_valid():
-        form.save()
-        return HttpResponseRedirect("/"+id)
-    
-    context["form"] = form
-
-    return render(request, "crud/updateview.html", context)
-
-def delete_view(request, id):
-    context = {}
-
-    obj = get_object_or_404(Member, id = id)
-
-    if request.method == "POST":
-        obj.delete()
-
-        return HttpResponseRedirect("/")
-    
-    return render(request, "crud/deleteview.html", context)
-
+@login_required
 def update_or_delete_view(request, id):
     context = {}
     obj = get_object_or_404(Member, id=id)
