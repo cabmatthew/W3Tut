@@ -1,18 +1,22 @@
-# import form class from django
 from django import forms
-
-# import GeeksModel from models.py
 from .models import Member
 
-# create a ModelForm
 class MembersForm(forms.ModelForm):
-	# specify the name of model to use
-	class Meta:
-		model = Member
-		fields = [
-			"shoe",
-			"firstname",
-			"lastname",
-			"phone",
-			"joined_date",
+    class Meta:
+        model = Member
+        fields = [
+            "shoe",
+            "firstname",
+            "lastname",
+            "phone",
+            "joined_date",
         ]
+
+    # Add CSS classes to the widget attributes
+    widgets = {
+        "shoe": forms.TextInput(attrs={'class': 'p'}),
+        "firstname": forms.TextInput(attrs={'class': 'p'}),
+        "lastname": forms.TextInput(attrs={'class': 'p'}),
+        "phone": forms.TextInput(attrs={'class': 'p'}),
+        "joined_date": forms.DateInput(attrs={'class': 'p'}),
+    }

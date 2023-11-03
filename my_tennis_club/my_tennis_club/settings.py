@@ -125,5 +125,5 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL='http://127.0.0.1:8000/users/login_user'
-LOGIN_REDIRECT_URL='http://127.0.0.1:8000/users/login_user'
+LOGIN_URL='http://127.0.0.1:8000/users/nologin'
+# LOGIN_REDIRECT_URL="{% url 'no_login' %}"

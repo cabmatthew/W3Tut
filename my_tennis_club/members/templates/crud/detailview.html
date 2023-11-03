@@ -6,14 +6,18 @@
 
 
 {% block content %}
-    <h1>Welcome to My Tennis Club</h1>
+    <h1>My Tennis Club</h1>
         
-    {{ data.firstname }}<br/>
-    {{ data.lastname }}<br/>
-    {{ data.phone }}<br/>
-    {{ data.joined_date }}<br/>
-    {{ data.shoe }}<br/>
+    
+    <h4>{{ data.firstname }} {{ data.lastname }} (ID: {{ data.id }})</h4><br/>
+    <p>
+      Phone: {{ data.phone }}<br/>
+      Date joined: {{ data.joined_date }}<br/>
+      Shoe: {{ data.shoe }}<br/>
+    </p>
     <hr/>
+
+    <p><a href="{% url 'memberlist_view' %}">Back to list</a></p>
  
 
     <!-- Add any additional content or styling here -->

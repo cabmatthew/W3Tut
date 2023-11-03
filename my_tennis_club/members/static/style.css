@@ -1,0 +1,41 @@
+h1 {
+    margin: auto;
+    text-align: center;
+    padding: 5px 5px 20px 5px;
+}
+
+h2 {
+    margin: auto;
+    text-align: center;
+    padding: 5px 5px 15px 5px;
+}
+
+h3 {
+    margin: auto;
+    text-align: center;
+    padding: 5px 5px 15px 5px;
+}
+
+h4 {
+    margin: auto;
+    text-align: center;
+    padding: 0px 0px 0px 0px;
+}
+
+p {
+    margin: auto;
+    text-align: center;
+    padding: 5px;
+}
+
+.formy {
+    width: 300px;
+    margin: auto;
+    text-align: center;
+}
+
+.buttony {
+    /* width: 300px; */
+    margin: auto;
+    text-align: center;
+}

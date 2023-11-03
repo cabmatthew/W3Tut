@@ -9,12 +9,9 @@ def main(request):
     template = loader.get_template('main.html')
     return HttpResponse(template.render())
 
-def testing(request):
-    template = loader.get_template('template.html')
-    context = {
-        'fruits': ['Apple', 'Banana', 'Cherry'],   
-    }
-    return HttpResponse(template.render(context, request))
+def main1(request):
+    template = loader.get_template('main.html')
+    return HttpResponse(template.render())
 
 @login_required
 def create_view(request):
@@ -59,7 +56,7 @@ def update_or_delete_view(request, id):
             form = MembersForm(request.POST, instance=obj)
             if form.is_valid():
                 form.save()
-                return HttpResponseRedirect(f"/list")
+                return HttpResponseRedirect("/list")
 
         # Check if the form was submitted for delete
         if 'delete' in request.POST:

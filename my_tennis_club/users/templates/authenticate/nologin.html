@@ -8,8 +8,8 @@
 {% block content %}
   <h1>Welcome to My Tennis Club</h1>
 
-  <h3>Members</h3>
-  
-  <p>Check out all our <a href="{% url 'memberlist_view' %}">members</a></p>
+  <!-- <h3>Members</h3> -->
+  <h4>You aren't logged in!</h4>
+  <p><a href="{% url 'login' %}">Login here to access this site.</a></p>
   
 {% endblock %}
