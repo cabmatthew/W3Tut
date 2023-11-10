@@ -25,3 +25,8 @@ def login_user(request):
 def no_login(request):
     template = loader.get_template('authenticate/nologin.html')
     return HttpResponse(template.render())
+
+def logout_user(request):
+    logout(request)
+    messages.success(request, ("You've been logged out!"))
+    return redirect('main')

@@ -4,14 +4,16 @@ from django.template import loader
 from .models import Member
 from .forms import MembersForm
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
+# @login_required
 def main(request):
-    template = loader.get_template('main.html')
-    return HttpResponse(template.render())
-
-def main1(request):
-    template = loader.get_template('main.html')
-    return HttpResponse(template.render())
+    # template = loader.get_template('main.html')
+    # return HttpResponse(template.render())
+    
+    context = {}
+    
+    return render(request, "main.html", context)
 
 @login_required
 def create_view(request):
