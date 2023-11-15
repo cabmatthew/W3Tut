@@ -22,7 +22,7 @@ h4 {
     padding: 0px 0px 0px 0px;
 }
 
-p {
+p.centered {
     margin: auto;
     text-align: center;
     padding: 5px;
@@ -35,7 +35,11 @@ p {
 }
 
 .buttony {
-    /* width: 300px; */
     margin: auto;
     text-align: center;
+}
+
+.mainContent {
+    padding-left: 30px;
+    padding-top: 30px;
 }

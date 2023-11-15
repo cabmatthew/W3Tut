@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.template import loader
 from django.http import HttpResponse
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 def login_user(request):
@@ -30,3 +31,29 @@ def logout_user(request):
     logout(request)
     messages.success(request, ("You've been logged out!"))
     return redirect('main')
+
+def register_user(request):
+    # if someone filled out the form, do something
+    if request.method == "POST":
+        # if user filled out the form, pass the POST in to UserCreationForm
+        form = UserCreationForm(request.POST)
+        # validate the form
+        if form.is_valid():
+            # save their information
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            # register & login/authenticate
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            messages.success(request, ('Registration successful!'))
+            return redirect('main')
+        
+    # show the form if not yet filled out
+    else:
+        # don't pass in the POST, user hasn't filled form out yet
+        form = UserCreationForm()
+
+    return render(request, 'authenticate/register_user.html', {
+        'form': form,
+    })
