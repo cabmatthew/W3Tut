@@ -23,6 +23,10 @@ def login_user(request):
         # {}: context dictionary of nothing
         return render(request, 'authenticate/login.html', {})
     
+def access_denied(request):
+    template = loader.get_template('authenticate/denied.html')
+    return HttpResponse(template.render())
+
 def no_login(request):
     template = loader.get_template('authenticate/nologin.html')
     return HttpResponse(template.render())

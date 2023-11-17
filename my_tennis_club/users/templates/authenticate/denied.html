@@ -1,0 +1,15 @@
+{% extends "master.html" %}
+
+{% block title %}
+  My Tennis Club
+{% endblock %}
+
+
+{% block content %}
+  <h1>Welcome to My Tennis Club</h1>
+
+  <!-- <h3>Members</h3> -->
+  <h4>You don't have the correct permissions!</h4>
+  <p class="centered"><a href="{% url 'main' %}">Back to home page.</a></p>
+  
+{% endblock %}

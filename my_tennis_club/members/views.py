@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 from .models import Member
 from .forms import MembersForm
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 
 # @login_required
@@ -16,6 +16,7 @@ def main(request):
     return render(request, "main.html", context)
 
 @login_required
+@permission_required("members.add_member", login_url='http://127.0.0.1:8000/users/denied')
 def create_view(request):
     context = {}
 
@@ -32,6 +33,7 @@ def create_view(request):
     return render(request, "crud/create.html", context)
 
 @login_required
+@permission_required("members.view_member", login_url='http://127.0.0.1:8000/users/denied')
 def memberlist_view(request):
     context = {}
 
@@ -40,6 +42,7 @@ def memberlist_view(request):
     return render(request, "crud/listview.html", context)
 
 @login_required
+@permission_required("members.view_member", login_url='http://127.0.0.1:8000/users/denied')
 def memberdetail_view(request, id):
     context = {}
     
@@ -48,6 +51,7 @@ def memberdetail_view(request, id):
     return render(request, "crud/detailview.html", context)
 
 @login_required
+@permission_required("members.delete_member", login_url='http://127.0.0.1:8000/users/denied')
 def update_or_delete_view(request, id):
     context = {}
     obj = get_object_or_404(Member, id=id)
